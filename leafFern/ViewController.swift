@@ -8,12 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let person = Person()
+    private let helper = Helper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Меня зовут \(person.myName), я создал cвое первое приложение")
-        print(person.fullName)
+        updatePersons()
+    }
+    
+    private func updatePersons() {
+        helper.addPerson(Grinch)
+        helper.addPerson(Fred)
+        helper.addPerson(Tom)
+        
+        for person in helper.getPersons() {
+            print(person.fullName)
+        }
     }
 }
 
