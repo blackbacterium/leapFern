@@ -16,14 +16,16 @@ class ViewController: UIViewController {
     }
     
     private func updatePersons() {
-        
-        helper.addPerson(Person(name: "Grinch", lastName: "Kind"))
-        helper.addPerson(Person(name: "Fred", lastName: "Brown"))
-        helper.addPerson(Person(name: "Tom", lastName: "Sawyer"))
+
+        helper.addPerson(User(login: "grinch@mail.ru", password: 1234,
+                              personalInfo: Person(name: "Grinch", lastName: "Kind")))
+        helper.addPerson(User(login: "fred@mail.ru", password: 4321,
+                              personalInfo: Person(name: "Fred", lastName: "Brown")))
+        helper.addPerson(User(login: "tom@mail.ru", password: 0000,
+                              personalInfo: Person(name: "Tom", lastName: "Sawyer")))
         
         for person in helper.getPersons() {
-            print(person.fullName)
+            print(person.personalInfo.fullName)
         }
     }
 }
-
