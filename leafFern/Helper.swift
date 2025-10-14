@@ -18,4 +18,10 @@ class Helper {
     func getPersons() -> [User] {
         listOfPerson
     }
+    
+    func addMuchUsers(users: [User]) {
+        for user in users {
+            addPerson(user)
+        }
+    }
 }

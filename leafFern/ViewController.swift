@@ -12,17 +12,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .blue
+        view.alpha = 0.9
         updatePersons()
     }
     
     private func updatePersons() {
-
-        helper.addPerson(User(login: "grinch@mail.ru", password: 1234,
-                              personalInfo: Person(name: "Grinch", lastName: "Kind")))
-        helper.addPerson(User(login: "fred@mail.ru", password: 4321,
-                              personalInfo: Person(name: "Fred", lastName: "Brown")))
-        helper.addPerson(User(login: "tom@mail.ru", password: 0000,
-                              personalInfo: Person(name: "Tom", lastName: "Sawyer")))
+        let userRepository = UserRepository()
+        helper.addMuchUsers(users: userRepository.getUsers())
         
         for person in helper.getPersons() {
             print(person.personalInfo.fullName)
