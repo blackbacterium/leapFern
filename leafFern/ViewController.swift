@@ -10,26 +10,25 @@ import UIKit
 class ViewController: UIViewController {
     
     private let helper = Helper()
+    
     private let userRepository = UserRepository()
     private let textLabel = UILabel()
-    
-    private let button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Show FullName", for: .normal)
-        button.backgroundColor = .green
-        button.frame = CGRect(x: 100, y: 150, width: 150, height: 50)
-        return button
-    }()
+    private let lableContainer = UIView()
+    private let button = UIButton()
+    private let stackView = UIStackView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
-//        view.alpha = 1.0
         updatePersons()
         
         setupLabel()
-        view.addSubview(textLabel)
-        view.addSubview(button)
+        setupButton()
+        setupStackView()
+        view.addSubview(stackView)
+//        view.addSubview(textLabel) - добавил в StackView через lableContainer
+//        view.addSubview(button) - добавил в StackView
+        setupLayout()
     }
     
     private func updatePersons() {
@@ -44,8 +43,39 @@ class ViewController: UIViewController {
         textLabel.text = 
         "\(userRepository.getUsers().randomElement()?.personalInfo.fullName ?? "")"
         textLabel.font = .systemFont(ofSize: 25, weight: .regular)
+        textLabel.textAlignment = .center
         textLabel.textColor = .blue
-        textLabel.frame = CGRect(x: 100, y: 100, width: 100, height: 50) // fullName не видно
-//        textLabel.frame = CGRect(x: 100, y: 100, width: 200, height: 50) // fullName видно
+        
+        lableContainer.addSubview(textLabel)
+    }
+    
+    private func setupButton() {
+        button.setTitle("Show FullName", for: .normal)
+        button.backgroundColor = .green
+    }
+    
+    private func setupStackView() {
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        
+        stackView.addArrangedSubview(lableContainer)
+        stackView.addArrangedSubview(button)
+    }
+    
+    private func setupLayout() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.widthAnchor.constraint(equalToConstant: 150),
+            stackView.heightAnchor.constraint(equalToConstant: 300),
+            
+            textLabel.centerXAnchor.constraint(equalTo: lableContainer.centerXAnchor),
+            textLabel.centerYAnchor.constraint(equalTo: lableContainer.centerYAnchor),
+            textLabel.widthAnchor.constraint(equalToConstant: 100)
+        ])
     }
 }
