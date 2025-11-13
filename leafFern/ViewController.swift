@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     
     private let userRepository = UserRepository()
     private let textLabel = UILabel()
-    private let lableContainer = UIView()
-    private let button = UIButton()
+    private let buttonView = ButtonView(buttonName: "Show New User", colorButton: .red, setShadow: false)
+    private let secondButtonView = ButtonView(buttonName: "Hide User", colorButton: .green, setShadow: true)
     private let stackView = UIStackView()
 
     override func viewDidLoad() {
@@ -23,11 +23,8 @@ class ViewController: UIViewController {
         updatePersons()
         
         setupLabel()
-        setupButton()
         setupStackView()
         view.addSubview(stackView)
-//        view.addSubview(textLabel) - добавил в StackView через lableContainer
-//        view.addSubview(button) - добавил в StackView
         setupLayout()
     }
     
@@ -45,37 +42,27 @@ class ViewController: UIViewController {
         textLabel.font = .systemFont(ofSize: 25, weight: .regular)
         textLabel.textAlignment = .center
         textLabel.textColor = .blue
-        
-        lableContainer.addSubview(textLabel)
-    }
-    
-    private func setupButton() {
-        button.setTitle("Show FullName", for: .normal)
-        button.backgroundColor = .green
     }
     
     private func setupStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
+        stackView.spacing = 12
         
-        stackView.addArrangedSubview(lableContainer)
-        stackView.addArrangedSubview(button)
+        stackView.addArrangedSubview(textLabel)
+        stackView.addArrangedSubview(buttonView)
+        stackView.addArrangedSubview(secondButtonView)
     }
     
     private func setupLayout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: 150),
-            stackView.heightAnchor.constraint(equalToConstant: 300),
-            
-            textLabel.centerXAnchor.constraint(equalTo: lableContainer.centerXAnchor),
-            textLabel.centerYAnchor.constraint(equalTo: lableContainer.centerYAnchor),
-            textLabel.widthAnchor.constraint(equalToConstant: 100)
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
+            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
         ])
     }
 }
