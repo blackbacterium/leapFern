@@ -48,11 +48,12 @@ class ViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 12
         
         stackView.addArrangedSubview(textLabel)
         stackView.addArrangedSubview(buttonView)
         stackView.addArrangedSubview(secondButtonView)
+        
+        stackView.setCustomSpacing(12, after: buttonView)
     }
     
     private func setupLayout() {
