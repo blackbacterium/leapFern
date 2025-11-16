@@ -22,6 +22,12 @@ class ButtonView: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let shadowPath = UIBezierPath(rect: bounds)
+        layer.shadowPath = shadowPath.cgPath
+    }
+    
     private func setupButton(_ buttonName: String, and colorButton: UIColor) {
         setTitle(buttonName, for: .normal)
         backgroundColor = colorButton
