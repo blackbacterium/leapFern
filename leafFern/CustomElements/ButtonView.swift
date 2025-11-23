@@ -27,14 +27,17 @@ class ButtonView: UIButton {
         let shadowPath = UIBezierPath(rect: bounds)
         layer.shadowPath = shadowPath.cgPath
     }
-    
-    private func setupButton(_ buttonName: String, and colorButton: UIColor) {
+}
+
+//MARK: - Setup View
+private extension UIButton {
+    func setupButton(_ buttonName: String, and colorButton: UIColor) {
         setTitle(buttonName, for: .normal)
         backgroundColor = colorButton
         layer.cornerRadius = 20
     }
     
-    private func setupShadow() {
+    func setupShadow() {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.7
         layer.shadowOffset = CGSize(width: 8, height: 8)

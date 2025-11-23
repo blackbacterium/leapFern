@@ -13,8 +13,14 @@ class ViewController: UIViewController {
     
     private let userRepository = UserRepository()
     private let textLabel = UILabel()
-    private let buttonView = ButtonView(buttonName: "Show New User", colorButton: .red, setShadow: false)
-    private let secondButtonView = ButtonView(buttonName: "Hide User", colorButton: .green, setShadow: true)
+    private let buttonView = ButtonView(
+        buttonName: "Show New User",
+        colorButton: .red,
+        setShadow: false)
+    private let secondButtonView = ButtonView(
+        buttonName: "Hide User",
+        colorButton: .green,
+        setShadow: true)
     private let stackView = UIStackView()
 
     override func viewDidLoad() {
@@ -24,7 +30,7 @@ class ViewController: UIViewController {
         
         setupLabel()
         setupStackView()
-        view.addSubview(stackView)
+        view.addMoreSubviews([stackView])
         setupLayout()
     }
     
@@ -35,28 +41,43 @@ class ViewController: UIViewController {
             print(person.personalInfo.fullName)
         }
     }
-    
-    private func setupLabel() {
-        textLabel.text = 
-        "\(userRepository.getUsers().randomElement()?.personalInfo.fullName ?? "")"
-        textLabel.font = .systemFont(ofSize: 25, weight: .regular)
-        textLabel.textAlignment = .center
-        textLabel.textColor = .blue
+}
+
+//MARK: - Nested types
+extension ViewController {
+    enum Constant {
+        static let font25: CGFloat = 25
     }
-    
-    private func setupStackView() {
+}
+
+//MARK: - Setup View
+private extension ViewController {
+    func setupStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
+//
+//        stackView.addArrangedSubview(textLabel)
+//        stackView.addArrangedSubview(buttonView)
+//        stackView.addArrangedSubview(secondButtonView)
         
-        stackView.addArrangedSubview(textLabel)
-        stackView.addArrangedSubview(buttonView)
-        stackView.addArrangedSubview(secondButtonView)
+        stackView.addMoreArrangedSubviews([textLabel, buttonView, secondButtonView])
         
         stackView.setCustomSpacing(12, after: buttonView)
     }
     
-    private func setupLayout() {
+    func setupLabel() {
+        textLabel.text =
+        "\(userRepository.getUsers().randomElement()?.personalInfo.fullName ?? "")"
+        textLabel.font = .systemFont(ofSize: Constant.font25, weight: .regular)
+        textLabel.textAlignment = .center
+        textLabel.textColor = .blue
+    }
+}
+
+//MARK: - Setup Layout
+private extension ViewController {
+    func setupLayout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -67,3 +88,5 @@ class ViewController: UIViewController {
         ])
     }
 }
+
+
