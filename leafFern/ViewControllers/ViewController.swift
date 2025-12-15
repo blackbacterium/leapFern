@@ -61,7 +61,7 @@ private extension ViewController {
 //        stackView.addArrangedSubview(buttonView)
 //        stackView.addArrangedSubview(secondButtonView)
         
-        stackView.addMoreArrangedSubviews([textLabel, buttonView, secondButtonView])
+        stackView.addMoreArrangedSubviews(textLabel, buttonView, secondButtonView)
         
         stackView.setCustomSpacing(12, after: buttonView)
     }

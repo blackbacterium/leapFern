@@ -8,9 +8,9 @@
 import UIKit
 
 extension UIView {
-    func addMoreSubviews(_ Subviews: [UIView]) {
-        for Subview in Subviews {
-            addSubview(Subview)
+    func addMoreSubviews(_ subviews: [UIView]) {
+        for subview in subviews {
+            addSubview(subview)
         }
     }
 }
