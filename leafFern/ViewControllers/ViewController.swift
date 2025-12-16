@@ -31,6 +31,8 @@ class ViewController: UIViewController {
         setupLabel()
         setupStackView()
         view.addMoreSubviews([stackView])
+        addAction()
+        
         setupLayout()
     }
     
@@ -40,6 +42,11 @@ class ViewController: UIViewController {
         for person in helper.getPersons() {
             print(person.personalInfo.fullName)
         }
+    }
+    
+    @objc
+    private func userButtonTapped() {
+        textLabel.text = userRepository.getRandomUser()
     }
 }
 
@@ -52,14 +59,22 @@ extension ViewController {
 
 //MARK: - Setup View
 private extension ViewController {
+    func addAction(){
+        buttonView.addTarget(
+            self,
+            action: #selector(userButtonTapped),
+            for: .touchUpInside)
+        
+        let action = UIAction { _ in
+            self.textLabel.text = ""
+        }
+        secondButtonView.addAction(action, for: .touchUpInside)
+    }
+    
     func setupStackView() {
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.alignment = .fill
-//
-//        stackView.addArrangedSubview(textLabel)
-//        stackView.addArrangedSubview(buttonView)
-//        stackView.addArrangedSubview(secondButtonView)
         
         stackView.addMoreArrangedSubviews(textLabel, buttonView, secondButtonView)
         

@@ -35,6 +35,8 @@ private extension UIButton {
         setTitle(buttonName, for: .normal)
         backgroundColor = colorButton
         layer.cornerRadius = 20
+        
+        heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupShadow() {

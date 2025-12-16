@@ -100,8 +100,8 @@
 			children = (
 				591BB33C2EF064DD0002DFF8 /* CustomElements */,
 				591BB33F2EF064DD0002DFF8 /* Extensions */,
-				591BB3442EF064DD0002DFF8 /* Resources */,
 				591BB3492EF064DD0002DFF8 /* Services */,
+				591BB3442EF064DD0002DFF8 /* Resources */,
 				591BB34B2EF064DD0002DFF8 /* ViewControllers */,
 				591BB34C2EF064DD0002DFF8 /* AppDelegate.swift */,
 				591BB34D2EF064DD0002DFF8 /* SceneDelegate.swift */,

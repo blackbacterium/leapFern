@@ -15,4 +15,8 @@ class UserRepository {
         User(login: "fred@mail.ru", password: 4321,personalInfo: Person(name: "Fred", lastName: "Brown")),
         User(login: "tom@mail.ru", password: 0000,personalInfo: Person(name: "Tom", lastName: "Sawyer"))]
     }
+    
+    func getRandomUser() -> String {
+        getUsers().randomElement()?.personalInfo.fullName ?? ""
+    }
 }
